@@ -1,0 +1,15 @@
+server:
+  port: 8082
+spring:
+  profiles:
+    active: ${PROFILE:dev}
+  application:
+    name: vehicule-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
