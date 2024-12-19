@@ -16,11 +16,10 @@ import java.util.List;
 @RequestMapping(Paths.BASE_API+"/brands")
 public class BrandController {
     private final BrandService brandService;
-    private final ModelService modelService;
 
-    public BrandController(BrandService brandService, ModelService modelService) {
+    public BrandController(BrandService brandService) {
         this.brandService = brandService;
-        this.modelService = modelService;
+
     }
 
     @GetMapping("/")
@@ -77,12 +76,22 @@ public class BrandController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+/*
     @GetMapping("/{id}/models")
     public ResponseEntity<List<Model>> getAllModelsOfBrand(@PathVariable Long id){
         try{
             Brand brand= brandService.getBrandById(id);
-            return new ResponseEntity<>(modelService.getAllModelsOfBrand(brand.getName()),HttpStatus.OK);
+            return new ResponseEntity<>(brand.getModels(),HttpStatus.OK);
+        }catch(BusinessException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+*/
+    @GetMapping("/{name}/models")
+    public ResponseEntity<List<Model>> getAllModelsOfBrandByName(@PathVariable String name){
+        try{
+            Brand brand= brandService.getBrandByName(name);
+            return new ResponseEntity<>(brand.getModels(),HttpStatus.OK);
         }catch(BusinessException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

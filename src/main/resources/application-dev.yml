@@ -1,6 +1,6 @@
 spring:
   datasource:
-    password: ${DB_PASSWORD:PWH@ss@n}
+    password: ${DB_PASSWORD:postgres}
     username: ${DB_USERNAME:postgres}
     url: jdbc:postgresql://localhost:5432/vehicule_db
     driver-class-name: org.postgresql.Driver

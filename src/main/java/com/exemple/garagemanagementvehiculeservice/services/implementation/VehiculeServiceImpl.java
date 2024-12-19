@@ -12,6 +12,8 @@ import com.exemple.garagemanagementvehiculeservice.services.VehiculeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -52,12 +54,13 @@ public class VehiculeServiceImpl implements VehiculeService {
         Brand brand= brandService.getBrandByName(vehiculeDto.brand());
         Model model=modelService.getModelByName(vehiculeDto.model());
         Date purchaseDate = parseDate(vehiculeDto.purchaseDate());
-
+        int year=Integer.parseInt(vehiculeDto.year());
+        double mileage=Double.parseDouble(vehiculeDto.mileage());
         Vehicule vehicule = new Vehicule(
                 vehiculeDto.registrationNumber(),
-                vehiculeDto.year(),
+                year,
                 vehiculeDto.color(),
-                vehiculeDto.mileage(),
+                mileage,
                 purchaseDate,
                 vehiculeDto.ownerId(),
                 brand,
@@ -98,8 +101,8 @@ public class VehiculeServiceImpl implements VehiculeService {
 
 
     private Date parseDate(String purchaseDateStr) {
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-        ZonedDateTime zdt = ZonedDateTime.parse(purchaseDateStr, formatter);
-        return Date.from(zdt.toInstant());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(purchaseDateStr.trim(), formatter);
+        return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
 }

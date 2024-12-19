@@ -21,7 +21,7 @@ public class Vehicule {
     private String registrationNumber;
     private int year;
     private String color;
-    private float mileage;
+    private double mileage;
     private Date purchaseDate;
     private String ownerId;
     @ManyToOne
@@ -33,7 +33,7 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public Vehicule(String registrationNumber, int year, String color, float mileage, Date purchaseDate,
+    public Vehicule(String registrationNumber, int year, String color, double mileage, Date purchaseDate,
                     String ownerId, Brand brand, Model model, FuelType fuelType, Status status) {
         this.registrationNumber = registrationNumber;
         this.year = year;

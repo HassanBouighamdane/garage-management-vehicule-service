@@ -6,7 +6,6 @@ import com.exemple.garagemanagementvehiculeservice.exceptions.BusinessException;
 import com.exemple.garagemanagementvehiculeservice.repositories.BrandRepository;
 import com.exemple.garagemanagementvehiculeservice.repositories.ModelRepository;
 import com.exemple.garagemanagementvehiculeservice.services.BrandService;
-import com.exemple.garagemanagementvehiculeservice.services.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +95,5 @@ public class BrandServiceImpl implements BrandService {
         newModel=modelRepository.save(newModel);
         brand.getModels().add(newModel);
         return brandRepository.save(brand);
-
     }
 }

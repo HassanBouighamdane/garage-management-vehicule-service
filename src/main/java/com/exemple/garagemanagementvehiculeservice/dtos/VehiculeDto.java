@@ -3,13 +3,12 @@ package com.exemple.garagemanagementvehiculeservice.dtos;
 import com.exemple.garagemanagementvehiculeservice.entities.enums.FuelType;
 import com.exemple.garagemanagementvehiculeservice.entities.enums.Status;
 
-import java.util.Date;
 
 public record VehiculeDto(
                           String registrationNumber,
-                          int year,
+                          String year,
                           String color,
-                          float mileage,
+                          String mileage,
                           String purchaseDate,
                           String ownerId,
                           String brand,

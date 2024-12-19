@@ -8,7 +8,7 @@ import java.util.List;
 public interface VehiculeService {
     List<Vehicule> getAll();
     List<Vehicule> getAllByOwner(String ownerId);
-    Vehicule createVehicule(VehiculeDto vehicule);
+    Vehicule createVehicule(VehiculeDto vehiculeDto);
     Vehicule getById(Long id);
     Vehicule updateVehicule(Vehicule vehicule);
     void deleteVehicule(Long id);
