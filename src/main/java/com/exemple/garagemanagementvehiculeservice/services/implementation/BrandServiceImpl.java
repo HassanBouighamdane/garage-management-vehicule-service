@@ -96,4 +96,23 @@ public class BrandServiceImpl implements BrandService {
         brand.getModels().add(newModel);
         return brandRepository.save(brand);
     }
+
+    @Override
+    public Brand addModelToBrandByName(String name, String modelName) {
+        Optional<Brand> existingBrand = brandRepository.findByNameIgnoreCase(name);
+        if (existingBrand.isEmpty()) {
+            throw new BusinessException("Brand not found");
+        }
+        Optional<Model> model = modelRepository.findByName(modelName);
+        Brand brand = existingBrand.get();
+        if (model.isPresent()) {
+            brand.getModels().add(model.get());
+            return brandRepository.save(brand);
+        }
+        Model newModel = new Model();
+        newModel.setName(modelName);
+        newModel = modelRepository.save(newModel);
+        brand.getModels().add(newModel);
+        return brandRepository.save(brand);
+    }
 }

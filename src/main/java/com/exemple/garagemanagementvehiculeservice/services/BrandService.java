@@ -12,4 +12,6 @@ public interface BrandService {
     Brand updateBrand(Long id,String name);
     void deleteBrand(Long id);
     Brand addModelToBrand(Long id,String modelName);
+
+    Brand addModelToBrandByName(String name, String modelName);
 }

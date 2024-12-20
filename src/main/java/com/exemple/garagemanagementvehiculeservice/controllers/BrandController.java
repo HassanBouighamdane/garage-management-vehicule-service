@@ -96,11 +96,21 @@ public class BrandController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-
+/*
     @PostMapping("/{id}/models")
     public ResponseEntity<Brand> addModelToBrand(@PathVariable Long id,@RequestBody Model model){
         try{
             Brand brand= brandService.addModelToBrand(id,model.getName());
+            return new ResponseEntity<>(brand,HttpStatus.OK);
+        }catch(BusinessException e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+*/
+    @PostMapping("/{name}/models")
+    public ResponseEntity<Brand> addModelToBrandByName(@PathVariable String name,@RequestBody Model model){
+        try{
+            Brand brand= brandService.addModelToBrandByName(name,model.getName());
             return new ResponseEntity<>(brand,HttpStatus.OK);
         }catch(BusinessException e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
